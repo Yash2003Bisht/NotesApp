@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}- {{search}}{% endblock title %}
+
+{% block body %}
+<div class="container my-5">
+        {% if ids|length == 0 %}
+        <h4>No Result Found</h4>
+        {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">Sno</th>
+                  <th scope="col">title</th>
+                  <th scope="col">desp</th>
+                  <th scope="col">created date</th>
+                  <th scope="col">updated date</th>
+                  <th scope="col">operations</th>
+                </tr>
+              </thead>
+              <tbody>
+        {% for note in range(notes|length) %}
+        {% if notes[note].id in ids %}
+    
+        <tr>
+        <th scope="row">{{note+1}}</th>
+        <td>{{notes[note].title}}</td>
+        <td>{{notes[note].desp}}</td>
+        <td>{{notes[note].date}}</td>
+        <td>{{notes[note].update_date}}</td>
+        <td>
+            <a href='/edit/{{notes[note].id}}'><button class="btn btn-outline-primary">Edit</button></a>
+            <a href='/delete/{{notes[note].id}}'><button class="btn btn-outline-secondary">Delete</button></a>
+        </td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+
+    {% endif %}
+        </tbody>
+    
+      </table>
+</div>
+          
+{% endblock body %}

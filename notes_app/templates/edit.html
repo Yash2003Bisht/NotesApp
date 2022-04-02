@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block title%} - edit {%endblock title%}
+{% block body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible " role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>  
+  {% endfor %}
+{% endif %}
+{% endwith %}
+<div class="container my-3">
+    <form action='/edit/{{notes.id}}' method='post'>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Title</label>
+          <input type="text" value={{notes.title}} required class="form-control" id="title" name="title" aria-describedby="emailHelp">
+        </div>
+        <label for="exampleInputEmail1" class="form-label">Description</label>
+        <div class="form-floating">
+            <textarea class="form-control" required placeholder="message" id="description" name="description" style="height: 150px">{{notes.desp}}</textarea>
+          </div>
+          <br>
+          <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+    
+{% endblock body %}
